@@ -6,7 +6,6 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -119,7 +118,6 @@ export function Nav(): ReactNode {
     x: number;
     width: number;
   } | null>(null);
-  const [hasMeasured, setHasMeasured] = useState(false);
 
   const activeIndex = NAV_ITEMS.findIndex((item) =>
     item.href === "/"
@@ -132,40 +130,35 @@ export function Nav(): ReactNode {
     const activeEl =
       activeIndex >= 0 ? itemRefs.current[activeIndex] : null;
     if (!list || !activeEl) {
-      setPillRect(null);
-      return;
+      const frame = requestAnimationFrame(() => {
+        setPillRect(null);
+      });
+      return () => cancelAnimationFrame(frame);
     }
-    const listRect = list.getBoundingClientRect();
-    const itemRect = activeEl.getBoundingClientRect();
-    setPillRect({
-      x: itemRect.left - listRect.left,
-      width: itemRect.width,
+    const frame = requestAnimationFrame(() => {
+      const listRect = list.getBoundingClientRect();
+      const itemRect = activeEl.getBoundingClientRect();
+      setPillRect({
+        x: itemRect.left - listRect.left,
+        width: itemRect.width,
+      });
     });
+    return () => cancelAnimationFrame(frame);
   }, [activeIndex, pathname]);
-
-  useEffect(() => {
-    if (!pillRect) return;
-    const id = requestAnimationFrame(() => setHasMeasured(true));
-    return () => cancelAnimationFrame(id);
-  }, [pillRect]);
 
   return (
     <nav
       aria-label="Primary"
       className="fixed left-1/2 top-6 z-50 -translate-x-1/2"
     >
-      <div className="flex items-center gap-1 rounded-full bg-background p-1.5 shadow-sm border border-foreground/8">
+      <div className="flex items-center gap-1 rounded-full border border-foreground/8 bg-background p-1.5 shadow-sm">
         <ul ref={listRef} className="relative flex items-center gap-1">
           {pillRect && (
             <motion.span
               aria-hidden="true"
               initial={false}
               animate={{ x: pillRect.x, width: pillRect.width }}
-              transition={
-                hasMeasured
-                  ? { type: "spring", stiffness: 380, damping: 32 }
-                  : { duration: 0 }
-              }
+              transition={{ type: "spring", stiffness: 380, damping: 32 }}
               style={{ left: 0, top: 0, bottom: 0 }}
               className="absolute rounded-full bg-foreground/5 ring-1 ring-foreground/8"
             />

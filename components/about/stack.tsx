@@ -13,21 +13,21 @@ type Chip = {
 
 const CHIPS: Chip[] = [
   {
-    label: "Figma",
+    label: "Web Platforms",
     slug: "figma",
-    bg: "#1f1f1f",
+    bg: "#161616",
     fg: "#ffffff",
-    iconUrl: "https://svgl.app/library/figma.svg",
+    iconUrl: "https://svgl.app/library/vercel.svg",
   },
-  { label: "React", slug: "react", bg: "#1FB6CB", fg: "#ffffff" },
-  { label: "Next.js", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
-  { label: "TypeScript", slug: "typescript", bg: "#2F74C0", fg: "#ffffff" },
-  { label: "shadcn/ui", slug: "shadcnui", bg: "#5b54ff", fg: "#ffffff" },
-  { label: "Cursor", slug: "cursor", bg: "#111111", fg: "#ffffff" },
-  { label: "GSAP", slug: "gsap", bg: "#0AE448", fg: "#0a0a0a" },
-  { label: "GitHub", slug: "github", bg: "#181717", fg: "#ffffff" },
-  { label: "Vercel", slug: "vercel", bg: "#0a0a0a", fg: "#ffffff" },
-  { label: "Tailwind CSS", slug: "tailwindcss", bg: "#2BBCF5", fg: "#ffffff" },
+  { label: "Mobile Apps", slug: "react", bg: "#1FB6CB", fg: "#ffffff" },
+  { label: "Business Systems", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
+  { label: "UI/UX Design", slug: "figma", bg: "#2F74C0", fg: "#ffffff" },
+  { label: "API Engineering", slug: "postman", bg: "#5b54ff", fg: "#ffffff" },
+  { label: "Cloud Deployment", slug: "googlecloud", bg: "#111111", fg: "#ffffff" },
+  { label: "Automation", slug: "n8n", bg: "#c6932b", fg: "#0a0a0a" },
+  { label: "Analytics", slug: "googleanalytics", bg: "#181717", fg: "#ffffff" },
+  { label: "QA & Testing", slug: "playwright", bg: "#0a0a0a", fg: "#ffffff" },
+  { label: "Support & Growth", slug: "zendesk", bg: "#2BBCF5", fg: "#ffffff" },
 ];
 
 const CHIP_RADIUS = 14;
@@ -214,7 +214,7 @@ export function Stack(): ReactNode {
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-          Stack
+          Solution areas
         </h3>
       </div>
 

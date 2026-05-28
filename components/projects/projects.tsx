@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   Bot,
@@ -7,17 +9,11 @@ import {
   Sparkles,
   Wand2,
 } from "lucide-react";
-import type { ComponentType, ReactNode } from "react";
+import { useEffect, useState, type ComponentType, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
-
-/**
- * Project imagery below is mockup-only. All visuals are sourced from
- * Dribbble and credit belongs to the original creators on dribbble.com.
- * Replace these with your own work before shipping.
- */
 
 type Project = {
   id: string;
@@ -27,91 +23,88 @@ type Project = {
   description: string;
   meta: string;
   imageRatio: number;
-  image: string;
+  images: string[];
   imageAlt: string;
 };
 
 const PROJECTS: Project[] = [
   {
-    id: "loom",
+    id: "enterprise-suite",
     icon: Sparkles,
-    iconLabel: "LOOM",
+    iconLabel: "University Platform",
     title:
-      "An AI writing companion that thinks alongside you, allowing you to capture ideas, edits, and drafts in one focused space.",
+      "University Digital Operations Platform for academic services, institutional workflows, and management reporting.",
     description:
-      "I designed Loom, a focused writing surface where ideas, edits, and drafts coexist without the chat clutter.",
-    meta: "Design Engineer, 2024",
-    imageRatio: 752 / 497,
-    image:
-      "https://cdn.dribbble.com/userupload/46128964/file/b92b9d268dd928642ca94bd49e32923a.jpg?resize=752x497&vertical=center",
-    imageAlt: "Loom AI writing companion mockup",
+      "GoldenCreation Tech designed and delivered a secure digital platform for the University of Dar es Salaam to centralize academic information, improve service workflows, and support efficient communication across university departments.",
+    meta: "Education Systems, 2026",
+    imageRatio: 1024 / 620,
+    images: ["/project-enterprise.png"],
+    imageAlt: "Enterprise business system showcase",
   },
   {
-    id: "atlas",
+    id: "hospitality-web",
     icon: Compass,
-    iconLabel: "Atlas Studio",
-    title: "A two week brand and product sprint for a creative studio.",
+    iconLabel: "Agriculture Platform",
+    title:
+      "Digital agriculture commerce platform for commodity trade, export coordination, and market visibility.",
     description:
-      "End to end identity, marketing site, and a small product surface designed to feel quietly confident across every touchpoint.",
-    meta: "Product & Brand Designer, 2025",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/24599416/file/original-1ae5075dcd129aebb16bdbca24b41ac7.png?resize=1024x768&vertical=center",
-    imageAlt: "Atlas Studio brand and product sprint mockup",
+      "GoldenCreation Tech designed and delivered a modern agribusiness platform that helps producers, exporters, and buyers access trusted market information, streamline trade communication, and improve digital customer engagement.",
+    meta: "Agriculture Systems, 2025",
+    imageRatio: 1024 / 560,
+    images: ["/project-hospitality-web-v3.png"],
+    imageAlt: "Agriculture digital platform case study",
   },
   {
-    id: "rhythm",
+    id: "logistics-mobile",
     icon: LineChart,
-    iconLabel: "Rhythm",
-    title: "Calm analytics for indie founders.",
+    iconLabel: "Vehicle Marketplace",
+    title:
+      "Digital vehicle marketplace platform for car sales, imports, and customer vehicle discovery.",
     description:
-      "A weekly digest that turns raw product data into a simple narrative. Built so you can read it on a Sunday with coffee.",
-    meta: "Founder & Designer, 2024",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/47357856/file/75841fa59f32f05ca6c5ddf02d08dfe6.png?resize=1024x768&vertical=center",
-    imageAlt: "Rhythm calm analytics mockup",
+      "GoldenCreation Tech designed and developed TG World, a modern automotive platform that helps customers explore vehicles, compare brands, and connect with trusted car import and sales services through a streamlined digital experience.",
+    meta: "Automotive Systems, 2025",
+    imageRatio: 1024 / 500,
+    images: ["/project-logistics-mobile-v3.png"],
+    imageAlt: "Logistics mobile operations app",
   },
   {
-    id: "groove",
+    id: "client-portal",
     icon: Wand2,
-    iconLabel: "Groove",
+    iconLabel: "Youth Chamber Platform",
     title:
-      "Reimagining the booking flow for a music school, asisting thousands of students in finding the right lessons.",
+      "Digital membership platform for youth business engagement, programs, and community growth.",
     description:
-      "I led a redesign of the lesson booking experience, cutting drop off in half and making the schedule feel like a calendar people actually want to open.",
-    meta: "Lead Designer, 2023",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/43955214/file/original-d4cde1de803e84b97d8892e3444c04b0.png?resize=1024x768&vertical=center",
-    imageAlt: "Groove music school booking flow mockup",
+      "GoldenCreation Tech designed and developed the TYCC platform for Tanzania Youth Chamber of Commerce, enabling young entrepreneurs to join, explore programs, and connect with opportunities that support business and innovation across Tanzania.",
+    meta: "Membership Systems, 2025",
+    imageRatio: 1024 / 500,
+    images: ["/project-tycc-platform.png"],
+    imageAlt: "TYCC Tanzania Youth Chamber of Commerce platform",
   },
   {
-    id: "fieldnote",
+    id: "design-system",
     icon: Layers,
-    iconLabel: "Fieldnote",
+    iconLabel: "Financial Platform",
     title:
-      "A pocket sized research tool for design teams that want to get out of their docs and into the world.",
+      "Secure digital finance platform for client onboarding, account access, and service operations.",
     description:
-      "Capture quotes, tag patterns, and synthesize themes in one place. The interface stays out of the way so the thinking can happen.",
-    meta: "Design Engineer, 2024",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/30310902/file/original-621e7fe47be9d11ee14544456c693bec.png?resize=1024x768&vertical=center",
-    imageAlt: "Fieldnote pocket sized research tool mockup",
+      "GoldenCreation Tech designed and delivered a modern financial services platform that enables streamlined sign-in, structured account workflows, and reliable customer access to core finance operations.",
+    meta: "Financial Systems, 2026",
+    imageRatio: 1024 / 500,
+    images: ["/project-financial-platform.png"],
+    imageAlt: "Financial platform sign-in and operations interface",
   },
   {
-    id: "talkback",
+    id: "analytics-hub",
     icon: Bot,
-    iconLabel: "Talkback",
-    title: "A friendlier interface for talking to language models.",
+    iconLabel: "Ocean Marketplace",
+    title:
+      "Mobile commerce platform for product discovery, seller access, and streamlined purchasing.",
     description:
-      "An exploration of how AI chat could feel less like a terminal and more like a conversation with a curious friend.",
-    meta: "Independent Project, 2025",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/16560717/file/original-c6f745d50302d66609bfe080f99f5396.png?resize=1024x768&vertical=center",
-    imageAlt: "Talkback friendlier AI chat interface mockup",
+      "GoldenCreation Tech designed and delivered the Ocean marketplace experience, enabling customers to browse products, compare options, and complete purchases through a clean mobile-first commerce interface.",
+    meta: "Commerce Systems, 2026",
+    imageRatio: 1024 / 500,
+    images: ["/project-ocean-marketplace.png"],
+    imageAlt: "Ocean marketplace mobile app platform",
   },
 ];
 
@@ -131,12 +124,13 @@ export function Projects({
       <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
         {withHeadline ? (
           <FadeIn className="flex flex-col items-center gap-5 pt-12 pb-10 text-center sm:pt-20 sm:pb-14">
-            <h2 className="font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[3rem] lg:text-[3.5rem]">
-              My projects
+            <h2 className="font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight md:text-[3rem] lg:text-[3.5rem]">
+              <span className="text-foreground">Our</span>{" "}
+              <span className="text-[#c6932b]">projects</span>
             </h2>
             <p className="max-w-[33ch] text-[18px] leading-[1.45] tracking-tight text-foreground/65 sm:text-[20px]">
-              From playful experiments to thoughtful systems, a look at the
-              work I&rsquo;m proud to have shipped.
+              Selected GoldenCreation Tech engagements across software, web, mobile,
+              systems, and product design.
             </p>
           </FadeIn>
         ) : null}
@@ -153,7 +147,7 @@ export function Projects({
               href="/projects"
               className="border border-foreground/8 focus-ring group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5"
             >
-              View all projects
+              View all case studies
               <ArrowRight
                 className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
                 aria-hidden="true"
@@ -173,18 +167,28 @@ function ProjectCard({
   project: Project;
   index: number;
 }): ReactNode {
+  const [activeImage, setActiveImage] = useState(0);
   const Icon = project.icon;
+
+  useEffect(() => {
+    if (project.images.length < 2) return;
+    const timer = window.setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % project.images.length);
+    }, 3200);
+    return () => window.clearInterval(timer);
+  }, [project.images]);
+
   return (
     <FadeIn
       delay={Math.min(index * 0.06, 0.3)}
       className="mb-6 break-inside-avoid md:mb-7"
     >
-      <article className="project-card flex cursor-pointer flex-col gap-4 rounded-3xl border border-foreground/8 bg-background p-3 sm:p-3.5">
+      <article className="project-card flex cursor-pointer flex-col gap-4 rounded-3xl border border-[#c6932b]/25 bg-background p-3 sm:p-3.5">
         <header className="flex items-center gap-2.5 px-1 pt-2">
-          <span className="border-foreground/10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-background">
-            <Icon className="h-3.5 w-3.5 text-foreground" aria-hidden="true" />
+          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#c6932b]/40 bg-[#c6932b]/10">
+            <Icon className="h-3.5 w-3.5 text-[#c6932b]" aria-hidden="true" />
           </span>
-          <span className="text-sm font-medium tracking-tight text-foreground">
+          <span className="text-sm font-semibold tracking-tight text-[#c6932b]">
             {project.iconLabel}
           </span>
         </header>
@@ -194,14 +198,19 @@ function ProjectCard({
           style={{ aspectRatio: project.imageRatio }}
         >
           <div className="project-card__image-inner">
-            <Image
-              src={project.image}
-              alt={project.imageAlt}
-              fill
-              sizes="(min-width: 1024px) 540px, (min-width: 768px) 45vw, 100vw"
-              className="object-cover"
-              priority={index < 2}
-            />
+            {project.images.map((imageSrc, imageIndex) => (
+              <Image
+                key={`${project.id}-${imageIndex}`}
+                src={imageSrc}
+                alt={project.imageAlt}
+                fill
+                sizes="(min-width: 1024px) 540px, (min-width: 768px) 45vw, 100vw"
+                className={`object-contain object-center transition-opacity duration-700 ${
+                  imageIndex === activeImage ? "opacity-100" : "opacity-0"
+                }`}
+                priority={index < 2 && imageIndex === 0}
+              />
+            ))}
           </div>
         </div>
 
@@ -214,9 +223,6 @@ function ProjectCard({
           </p>
         </div>
 
-        <p className="px-1 pb-2 text-[12px] tracking-tight text-foreground/50">
-          {project.meta}
-        </p>
       </article>
     </FadeIn>
   );

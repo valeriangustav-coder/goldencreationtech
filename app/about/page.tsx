@@ -11,7 +11,7 @@ import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
   title: "About",
-  description: "About me, background, and how to get in touch.",
+  description: "About GoldenCreation Tech, our services, and how to get in touch.",
   path: "/about",
 });
 
@@ -26,17 +26,17 @@ export default function AboutPage(): ReactNode {
         <FadeIn delay={0.5}>
           <div className="rounded-4xl border border-foreground/5 bg-foreground/1.5 p-8 sm:p-12 dark:bg-foreground/3">
             <h1 className="font-serif text-[1.75rem] font-medium tracking-tight text-foreground sm:text-[2rem]">
-              Hello! I&rsquo;m <span className="border-b border-foreground/30 pb-0.5">Josh Mercer</span>.
+              About <span className="border-b border-foreground/30 pb-0.5">GoldenCreation Tech</span>.
             </h1>
             <div className="mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight text-foreground/75 sm:text-[18px]">
               <p>
-                A <strong className="font-semibold text-foreground">product designer and frontend engineer</strong> passionate about building intuitive, human-centered digital experiences. With a background in <strong className="font-semibold text-foreground">visual craft</strong> and <strong className="font-semibold text-foreground">interaction design</strong>, I bring a unique blend of design thinking and technical execution to every project.
+                GoldenCreation Tech is a <strong className="font-semibold text-foreground">software and digital product company</strong> focused on building dependable solutions for modern organizations. We combine strong engineering execution with pragmatic product thinking to deliver platforms that are scalable, maintainable, and user-friendly.
               </p>
               <p>
-                My journey into design began when I realized how often good user experience was missing from powerful tools. That led me to embrace <strong className="font-semibold text-foreground">user-centered design</strong> as both a mindset and a craft, one that balances clarity, creativity, and functionality.
+                Our core services include <strong className="font-semibold text-foreground">software development, website design, mobile app development, business systems, and UI/UX design</strong>. From discovery to deployment, we partner with clients to turn operational and product goals into working digital systems.
               </p>
               <p>
-                Currently leading design at small product teams shipping software for <strong className="font-semibold text-foreground">creative professionals</strong>, I&rsquo;m always looking for opportunities to <strong className="font-semibold text-foreground">shape thoughtful interfaces and build scalable design systems</strong>.
+                Based in <strong className="font-semibold text-foreground">Mbezi Beach, Masana, Dar es Salaam, Tanzania</strong>, GoldenCreation Tech supports businesses seeking robust digital solutions with clean interfaces, clear workflows, and measurable business value.
               </p>
             </div>
           </div>

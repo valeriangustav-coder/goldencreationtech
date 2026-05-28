@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Portfolio",
+  name: "GoldenCreation Tech",
   description:
-    "A modern, accessible portfolio template built with Next.js, Tailwind CSS, and TypeScript.",
-  url: "https://example.com",
+    "GoldenCreation Tech delivers software development, website design, mobile app development, business systems, UI/UX design, and digital solutions from Dar es Salaam, Tanzania.",
+  url: "https://goldcreation.co.tz",
   ogImage: "/og-image.png",
-  creator: "@yourhandle",
+  creator: "GoldenCreation Tech",
   authors: [
     {
-      name: "Your Name",
-      url: "https://example.com",
+      name: "GoldenCreation Tech",
+      url: "https://goldcreation.co.tz",
     },
   ],
   keywords: [
-    "portfolio",
-    "personal site",
+    "software development",
+    "website design",
+    "mobile app development",
+    "business systems",
+    "ui/ux design",
+    "digital solutions",
+    "dar es salaam",
+    "tanzania",
     "Next.js",
     "React",
     "Tailwind CSS",

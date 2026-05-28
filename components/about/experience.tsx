@@ -14,52 +14,40 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   {
-    company: "Linear",
-    role: "Senior Design Engineer",
-    period: "Mar 2024 – Present",
-    slug: "linear",
-    brand: "#5E6AD2",
+    company: "Discovery & Planning",
+    role: "Requirements analysis and digital strategy alignment",
+    period: "Phase 01",
+    brand: "#c6932b",
   },
   {
-    company: "Vercel",
-    role: "Product Designer",
-    period: "Aug 2022 – Feb 2024",
-    slug: "vercel",
-    brand: "#0a0a0a",
-  },
-  {
-    company: "Stripe",
-    role: "Design Engineer",
-    period: "Jun 2021 – Jul 2022",
-    slug: "stripe",
-    brand: "#635BFF",
-  },
-  {
-    company: "Figma",
-    role: "UI Engineer",
-    period: "Sep 2019 – May 2021",
-    slug: "figma",
-    brand: "#A259FF",
-  },
-  {
-    company: "Notion",
-    role: "Product Designer",
-    period: "Jan 2018 – Aug 2019",
-    slug: "notion",
+    company: "UI/UX Design",
+    role: "Wireframes, prototypes, and interaction design systems",
+    period: "Phase 02",
     brand: "#111111",
   },
   {
-    company: "Airbnb",
-    role: "Design Intern",
-    period: "May 2017 – Dec 2017",
-    slug: "airbnb",
-    brand: "#FF5A5F",
+    company: "Full-Stack Development",
+    role: "Secure, scalable implementation across web and backend",
+    period: "Phase 03",
+    brand: "#0a0a0a",
   },
   {
-    company: "Freelance",
-    role: "Designer & Developer",
-    period: "2015 – 2017",
-    brand: "#0AE448",
+    company: "Mobile App Delivery",
+    role: "Cross-platform application development and testing",
+    period: "Phase 04",
+    brand: "#1c1c1c",
+  },
+  {
+    company: "Business Systems Integration",
+    role: "Automation, reporting, and process optimization",
+    period: "Phase 05",
+    brand: "#2a2a2a",
+  },
+  {
+    company: "Launch & Support",
+    role: "Deployment, monitoring, and continuous improvements",
+    period: "Phase 06",
+    brand: "#3a3a3a",
   },
 ];
 
@@ -78,7 +66,7 @@ export function Experience(): ReactNode {
   return (
     <div className="flex flex-col gap-3">
       <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-        Experience
+        Delivery process
       </h3>
       <div
         className={`border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative overflow-hidden rounded-4xl border px-2 pt-2 sm:px-4 sm:pt-4 ${
