@@ -185,13 +185,16 @@ export default function PillNav({
     const menu = mobileMenuRef.current;
 
     if (hamburger) {
-      const lines = hamburger.querySelectorAll(".hamburger-line");
-      if (newState) {
-        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
-      } else {
-        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+      const [line1, line2] =
+        hamburger.querySelectorAll<HTMLElement>(".hamburger-line");
+      if (line1 && line2) {
+        if (newState) {
+          gsap.to(line1, { rotation: 45, y: 3, duration: 0.3, ease });
+          gsap.to(line2, { rotation: -45, y: -3, duration: 0.3, ease });
+        } else {
+          gsap.to(line1, { rotation: 0, y: 0, duration: 0.3, ease });
+          gsap.to(line2, { rotation: 0, y: 0, duration: 0.3, ease });
+        }
       }
     }
 
