@@ -31,7 +31,6 @@ const CHIPS: Chip[] = [
 ];
 
 const CHIP_RADIUS = 14;
-const ICON_RADIUS = 10;
 const WALL_PAD = 16;
 
 type ChipState = {
@@ -211,22 +210,22 @@ export function Stack(): ReactNode {
   }, [resetKey]);
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-3">
-        <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
+    <div>
+      <div>
+        <h3>
           Solution areas
         </h3>
       </div>
 
-      <div className="border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative h-40 overflow-hidden rounded-4xl border sm:h-64">
+      <div>
         <button
           type="button"
           onClick={() => setResetKey((k) => k + 1)}
           aria-label="Reset stack"
-          className="focus-ring border-foreground/8 bg-background text-foreground/70 hover:text-foreground absolute top-3 right-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-xl border transition-colors"
+
         >
           <RotateCcw
-            className="h-4 w-4"
+
             strokeWidth={2.25}
             aria-hidden="true"
           />
@@ -235,7 +234,7 @@ export function Stack(): ReactNode {
         <div
           ref={measureRef}
           aria-hidden="true"
-          className="pointer-events-none invisible absolute top-0 left-0 flex flex-wrap gap-2"
+
         >
           {CHIPS.map((chip) => (
             <ChipPill key={`m-${chip.label}`} chip={chip} />
@@ -244,8 +243,8 @@ export function Stack(): ReactNode {
 
         <div
           ref={containerRef}
-          className="absolute inset-0 cursor-grab select-none"
-          style={{ touchAction: "none" }}
+
+
         >
           {CHIPS.map((chip, i) => (
             <div
@@ -254,8 +253,8 @@ export function Stack(): ReactNode {
                 chipRefs.current[i] = el;
               }}
               data-stack-chip
-              className="pointer-events-none absolute top-0 left-0 will-change-transform"
-              style={{ transform: "translate3d(-9999px, -9999px, 0)" }}
+
+
             >
               <ChipPill chip={chip} />
             </div>
@@ -269,16 +268,12 @@ export function Stack(): ReactNode {
 function ChipPill({ chip }: { chip: Chip }): ReactNode {
   return (
     <div
-      className="dark:ring-1 dark:ring-white/15 inline-flex items-center gap-2 p-1 pr-2 text-[15px] font-medium tracking-tight sm:text-[16px]"
-      style={{
-        backgroundColor: chip.bg,
-        color: chip.fg,
-        borderRadius: `${CHIP_RADIUS}px`,
-      }}
+
+
     >
       <span
-        className="inline-flex h-8 w-8 items-center justify-center bg-white/95"
-        style={{ borderRadius: `${ICON_RADIUS}px` }}
+
+
         aria-hidden="true"
       >
         <img
@@ -286,7 +281,7 @@ function ChipPill({ chip }: { chip: Chip }): ReactNode {
           alt=""
           width={18}
           height={18}
-          className="h-5 w-5"
+
           draggable={false}
         />
       </span>

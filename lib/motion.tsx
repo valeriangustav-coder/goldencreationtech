@@ -95,13 +95,11 @@ export const springTransition = {
 type MotionDivProps = {
   variants?: Variants;
   children?: ReactNode;
-  className?: string;
 } & MotionProps;
 
 export function MotionDiv({
   variants = fadeInUp,
   children,
-  className,
   ...props
 }: MotionDivProps): ReactNode {
   const prefersReducedMotion = useReducedMotion();
@@ -117,7 +115,7 @@ export function MotionDiv({
       animate="visible"
       variants={activeVariants}
       transition={activeTransition}
-      className={className}
+
       {...props}
     >
       {children}
@@ -128,7 +126,6 @@ export function MotionDiv({
 export function MotionSection({
   variants = fadeInUp,
   children,
-  className,
   ...props
 }: MotionDivProps): ReactNode {
   const prefersReducedMotion = useReducedMotion();
@@ -144,7 +141,7 @@ export function MotionSection({
       animate="visible"
       variants={activeVariants}
       transition={activeTransition}
-      className={className}
+
       {...props}
     >
       {children}
@@ -154,11 +151,9 @@ export function MotionSection({
 
 export function StaggerContainer({
   children,
-  className,
   ...props
 }: {
   children: ReactNode;
-  className?: string;
 } & MotionProps): ReactNode {
   const prefersReducedMotion = useReducedMotion();
 
@@ -167,7 +162,7 @@ export function StaggerContainer({
       initial="hidden"
       animate="visible"
       variants={prefersReducedMotion ? reducedMotionVariants : staggerContainer}
-      className={className}
+
       {...props}
     >
       {children}
@@ -177,18 +172,16 @@ export function StaggerContainer({
 
 export function StaggerItem({
   children,
-  className,
   ...props
 }: {
   children: ReactNode;
-  className?: string;
 } & MotionProps): ReactNode {
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
       variants={prefersReducedMotion ? reducedMotionVariants : fadeInUp}
-      className={className}
+
       {...props}
     >
       {children}

@@ -1,35 +1,28 @@
 import { ContactCard } from "@/components/contact/contact-card";
 import { Projects } from "@/components/projects/projects";
-import { FadeIn } from "@/components/ui/motion-primitives";
+import { PageIntro } from "@/components/template/shared";
 import { createMetadata } from "@/lib/metadata";
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-
-export const metadata: Metadata = createMetadata({
-  title: "Projects",
-  description:
-    "Selected GoldenCreation Tech software and digital delivery case studies.",
+export const metadata = createMetadata({
+  title: "Our work",
   path: "/projects",
+  description:
+    "Explore GoldenCreation Tech’s work across websites, mobile apps, and business systems.",
 });
-
-export default function ProjectsPage(): ReactNode {
+export default function ProjectsPage() {
   return (
-    <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-275 px-6 pt-44 pb-16 sm:px-10 sm:pt-100 sm:pb-20">
-        <FadeIn className="flex flex-col items-center gap-5 text-center">
-          <h1 className="font-serif text-[2.75rem] font-medium leading-[1.05] tracking-tight md:text-[3.25rem] lg:text-[3.75rem]">
-            <span className="text-foreground">GoldenCreation Tech</span>{" "}
-            <span className="text-[#c6932b]">case studies</span>
-          </h1>
-          <p className="max-w-[33ch] text-[20px] leading-[1.4] tracking-tight text-foreground/65 sm:text-[22px]">
-            Software, websites, mobile products, and business systems delivered
-            with measurable outcomes.
-          </p>
-        </FadeIn>
-      </section>
+    <main id="main-content">
+      <PageIntro
+        title={
+          <>
+            Our <em>work.</em>
+          </>
+        }
+      >
+        Digital experiences built around real people and practical business
+        needs. A selection of what we’ve brought to life.
+      </PageIntro>
       <Projects />
       <ContactCard />
-      <div className="h-12 sm:h-16" />
     </main>
   );
 }

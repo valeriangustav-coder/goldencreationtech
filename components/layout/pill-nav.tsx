@@ -3,8 +3,7 @@
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import "./pill-nav.css";
+import { useEffect, useRef, useState } from "react";
 
 type PillNavItem = {
   label: string;
@@ -16,13 +15,7 @@ type PillNavProps = {
   logo: string;
   logoAlt?: string;
   items: PillNavItem[];
-  activeHref?: string;
-  className?: string;
   ease?: string;
-  baseColor?: string;
-  pillColor?: string;
-  hoveredPillTextColor?: string;
-  pillTextColor?: string;
   onMobileMenuClick?: () => void;
   initialLoadAnimation?: boolean;
 };
@@ -31,17 +24,10 @@ export default function PillNav({
   logo,
   logoAlt = "Logo",
   items,
-  activeHref,
-  className = "",
   ease = "power3.easeOut",
-  baseColor = "#fff",
-  pillColor = "#120F17",
-  hoveredPillTextColor = "#120F17",
-  pillTextColor,
   onMobileMenuClick,
   initialLoadAnimation = true,
 }: PillNavProps) {
-  const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const tlRefs = useRef<gsap.core.Timeline[]>([]);
@@ -77,8 +63,8 @@ export default function PillNav({
           transformOrigin: `50% ${originY}px`,
         });
 
-        const label = pill.querySelector<HTMLElement>(".pill-label");
-        const hover = pill.querySelector<HTMLElement>(".pill-label-hover");
+        const label = pill.querySelector<HTMLElement>("[data-pill-label]");
+        const hover = pill.querySelector<HTMLElement>("[data-pill-label-hover]");
 
         if (label) gsap.set(label, { y: 0 });
         if (hover) gsap.set(hover, { y: h + 12, opacity: 0 });
@@ -237,22 +223,11 @@ export default function PillNav({
     setMobileMenuOpen(false);
   };
 
-  const cssVars = useMemo(
-    () =>
-      ({
-        ["--base"]: baseColor,
-        ["--pill-bg"]: pillColor,
-        ["--hover-text"]: hoveredPillTextColor,
-        ["--pill-text"]: resolvedPillTextColor,
-      }) as CSSProperties,
-    [baseColor, pillColor, hoveredPillTextColor, resolvedPillTextColor]
-  );
-
   return (
-    <div className="pill-nav-container">
-      <nav className={`pill-nav ${className}`} aria-label="Primary" style={cssVars}>
+    <div>
+      <nav aria-label="Primary">
         <Link
-          className="pill-logo"
+
           href="/"
           aria-label="Home"
           onMouseEnter={handleLogoEnter}
@@ -264,33 +239,33 @@ export default function PillNav({
             alt={logoAlt}
             width={36}
             height={36}
-            className="pill-logo-img"
+
             ref={logoImgRef}
           />
         </Link>
 
-        <div className="pill-nav-items desktop-only" ref={navItemsRef}>
-          <ul className="pill-list" role="menubar">
+        <div ref={navItemsRef}>
+          <ul role="menubar">
             {items.map((item, i) => (
               <li key={item.href || `item-${i}`} role="none">
                 <Link
                   role="menuitem"
                   href={item.href}
-                  className={`pill${activeHref === item.href ? " is-active" : ""}`}
+
                   aria-label={item.ariaLabel || item.label}
                   onMouseEnter={() => handleEnter(i)}
                   onMouseLeave={() => handleLeave(i)}
                 >
                   <span
-                    className="hover-circle"
+
                     aria-hidden="true"
                     ref={(el) => {
                       circleRefs.current[i] = el;
                     }}
                   />
-                  <span className="label-stack">
-                    <span className="pill-label">{item.label}</span>
-                    <span className="pill-label-hover" aria-hidden="true">
+                  <span>
+                    <span data-pill-label>{item.label}</span>
+                    <span data-pill-label-hover aria-hidden="true">
                       {item.label}
                     </span>
                   </span>
@@ -301,30 +276,30 @@ export default function PillNav({
         </div>
 
         <button
-          className="mobile-menu-button mobile-only"
+
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           ref={hamburgerRef}
         >
-          <span className="hamburger-line" />
-          <span className="hamburger-line" />
+          <span data-hamburger-line />
+          <span data-hamburger-line />
         </button>
       </nav>
 
       <button
         type="button"
         aria-label="Close menu backdrop"
-        className={`mobile-backdrop mobile-only${isMobileMenuOpen ? " is-open" : ""}`}
+
         onClick={closeMobileMenu}
       />
 
-      <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
-        <ul className="mobile-menu-list">
+      <div ref={mobileMenuRef}>
+        <ul>
           {items.map((item, i) => (
             <li key={item.href || `mobile-item-${i}`}>
               <Link
                 href={item.href}
-                className={`mobile-menu-link${activeHref === item.href ? " is-active" : ""}`}
+
                 onClick={closeMobileMenu}
               >
                 {item.label}

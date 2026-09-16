@@ -1,61 +1,131 @@
-import { Education } from "@/components/about/education";
-import { Experience } from "@/components/about/experience";
-import { PolaroidStrip } from "@/components/about/polaroid-strip";
-import { Skills } from "@/components/about/skills";
-import { Stack } from "@/components/about/stack";
+import Link from "next/link";
 import { ContactCard } from "@/components/contact/contact-card";
-import { FadeIn } from "@/components/ui/motion-primitives";
+import {
+  PageIntro,
+  ProjectImage,
+  ClientStrip,
+} from "@/components/template/shared";
 import { createMetadata } from "@/lib/metadata";
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-
-export const metadata: Metadata = createMetadata({
+export const metadata = createMetadata({
   title: "About",
-  description: "About GoldenCreation Tech, our services, and how to get in touch.",
   path: "/about",
+  description:
+    "Meet GoldenCreation Tech, a software and digital product company based in Dar es Salaam, Tanzania.",
 });
-
-export default function AboutPage(): ReactNode {
+const values = [
+  [
+    "Start with people.",
+    "We design around the people using a product and the teams that depend on it every day.",
+  ],
+  [
+    "Make the complex clear.",
+    "Clear interfaces and practical workflows help people get things done with confidence.",
+  ],
+  [
+    "Build to last.",
+    "Maintainable engineering and a dependable foundation matter as much as the first impression.",
+  ],
+  [
+    "Work as one team.",
+    "We bring product thinking, design, and development together in close collaboration with our clients.",
+  ],
+  [
+    "Stay curious.",
+    "Every project begins by understanding the problem and finding a useful way forward.",
+  ],
+  [
+    "Care about the details.",
+    "From the smallest interaction to the complete system, quality is part of how we work.",
+  ],
+];
+export default function AboutPage() {
   return (
-    <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-312 pt-40 sm:pt-56">
-        <PolaroidStrip />
-      </section>
-
-      <section className="mx-auto w-full max-w-160 px-6 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24">
-        <FadeIn delay={0.5}>
-          <div className="rounded-4xl border border-foreground/5 bg-foreground/1.5 p-8 sm:p-12 dark:bg-foreground/3">
-            <h1 className="font-serif text-[1.75rem] font-medium tracking-tight text-foreground sm:text-[2rem]">
-              About <span className="border-b border-foreground/30 pb-0.5">GoldenCreation Tech</span>.
-            </h1>
-            <div className="mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight text-foreground/75 sm:text-[18px]">
-              <p>
-                GoldenCreation Tech is a <strong className="font-semibold text-foreground">software and digital product company</strong> focused on building dependable solutions for modern organizations. We combine strong engineering execution with pragmatic product thinking to deliver platforms that are scalable, maintainable, and user-friendly.
-              </p>
-              <p>
-                Our core services include <strong className="font-semibold text-foreground">software development, website design, mobile app development, business systems, and UI/UX design</strong>. From discovery to deployment, we partner with clients to turn operational and product goals into working digital systems.
-              </p>
-              <p>
-                Based in <strong className="font-semibold text-foreground">Mbezi Beach, Masana, Dar es Salaam, Tanzania</strong>, GoldenCreation Tech supports businesses seeking robust digital solutions with clean interfaces, clear workflows, and measurable business value.
-              </p>
-            </div>
+    <main id="main-content">
+      <PageIntro
+        title={
+          <>
+            Your next chapter.
+            <br />
+            Our shared <em>ambition.</em>
+          </>
+        }
+      >
+        We’re GoldenCreation Tech, a software and digital product company in Dar
+        es Salaam. We bring thoughtful design and dependable engineering to your
+        next idea.
+      </PageIntro>
+      <section
+        className="about-gallery shell"
+        aria-label="A glimpse of our digital work"
+      >
+        {[0, 5, 2, 3].map((index) => (
+          <div key={index}>
+            <ProjectImage index={index} />
           </div>
-        </FadeIn>
+        ))}
       </section>
-
-      <section className="mx-auto w-full max-w-[40rem] px-6 pb-20 sm:px-10 sm:pb-28">
-        <FadeIn delay={0.1}>
-          <div className="flex flex-col gap-10">
-            <Experience />
-            <Education />
-            <Skills />
-            <Stack />
+      <ClientStrip />
+      <section className="mission shell">
+        <div>
+          <h2>
+            Useful technology.
+            <br />
+            <em>Lasting value.</em>
+          </h2>
+          <p>
+            Our focus is simple: help organizations turn their operational and
+            product goals into working digital systems. We combine pragmatic
+            product thinking with strong engineering to build platforms that are
+            scalable, maintainable, and easy to use.
+          </p>
+        </div>
+      </section>
+      <section className="values shell">
+        <div className="light-panel">
+          <p className="eyebrow">WHAT GUIDES US</p>
+          <h2>
+            Good work starts
+            <br />
+            with good <em>principles.</em>
+          </h2>
+          <div className="values-grid">
+            {values.map(([title, text], i) => (
+              <article key={title}>
+                <span className="eyebrow">0{i + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
-        </FadeIn>
+        </div>
       </section>
-
+      <section className="location-row shell">
+        <h2>
+          Based in Tanzania.
+          <br />
+          Built for <em>possibility.</em>
+        </h2>
+        <div>
+          <p>
+            Find us in Mbezi Beach, Masana, Dar es Salaam. We work with local
+            and international businesses through project-based, retainer, and
+            dedicated-team engagements.
+          </p>
+          <p className="eyebrow">DAR ES SALAAM · TANZANIA</p>
+        </div>
+      </section>
       <ContactCard />
-      <div className="h-12 sm:h-16" />
+      <Link
+        href="/projects"
+        className="about-bottom-mosaic shell"
+        aria-label="Explore all of our work"
+      >
+        {[1, 4, 3, 5].map((i) => (
+          <div key={i}>
+            <ProjectImage index={i} />
+          </div>
+        ))}
+      </Link>
     </main>
   );
 }

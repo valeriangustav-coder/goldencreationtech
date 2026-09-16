@@ -1,23 +1,16 @@
 import { ContactCard } from "@/components/contact/contact-card";
 import { Hero } from "@/components/hero/hero";
 import { Projects } from "@/components/projects/projects";
-import { createMetadata, siteConfig } from "@/lib/metadata";
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-
-export const metadata: Metadata = createMetadata({
-  title: "Home",
-  description: `Welcome to ${siteConfig.name}. ${siteConfig.description}`,
-  path: "/",
-});
-
-export default function HomePage(): ReactNode {
+import { ServicePanel } from "@/components/template/interactions";
+import { createMetadata } from "@/lib/metadata";
+export const metadata = createMetadata({ title: "Home", path: "/" });
+export default function HomePage() {
   return (
-    <main id="main-content" className="flex flex-1 flex-col gap-20 sm:gap-28">
+    <main id="main-content">
       <Hero />
       <Projects withHeadline viewMoreVisible />
+      <ServicePanel />
       <ContactCard />
-      <div className="h-12 sm:h-16" />
     </main>
   );
 }

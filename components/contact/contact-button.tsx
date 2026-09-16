@@ -46,12 +46,12 @@ export function ContactButton(): ReactNode {
         copied ? "Email copied" : open ? `Copy ${EMAIL}` : "Show email"
       }
       transition={{ layout: { duration: 0.55, ease: EASE } }}
-      style={{ borderRadius: 12 }}
-      className="focus-ring relative inline-flex h-11 cursor-pointer items-center justify-center bg-foreground px-5 text-sm font-medium text-background"
+
+
     >
       <motion.span
         layout="position"
-        className="relative inline-flex items-center"
+
       >
         <AnimatePresence initial={false} mode="popLayout">
           {open ? (
@@ -62,9 +62,9 @@ export function ContactButton(): ReactNode {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, filter: "blur(8px)" }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="inline-flex items-center gap-2 whitespace-nowrap"
+
             >
-              <span className="relative inline-flex h-4 w-4 shrink-0 items-center justify-center">
+              <span>
                 <AnimatePresence initial={false} mode="wait">
                   {copied ? (
                     <motion.span
@@ -73,9 +73,9 @@ export function ContactButton(): ReactNode {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.5, opacity: 0 }}
                       transition={{ duration: 0.2, ease: EASE }}
-                      className="inline-flex"
+
                     >
-                      <Check className="h-4 w-4" aria-hidden="true" />
+                      <Check aria-hidden="true" />
                     </motion.span>
                   ) : (
                     <motion.span
@@ -84,14 +84,14 @@ export function ContactButton(): ReactNode {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.5, opacity: 0 }}
                       transition={{ duration: 0.2, ease: EASE }}
-                      className="inline-flex"
+
                     >
-                      <Copy className="h-4 w-4" aria-hidden="true" />
+                      <Copy aria-hidden="true" />
                     </motion.span>
                   )}
                 </AnimatePresence>
               </span>
-              <span className="tabular-nums">{EMAIL}</span>
+              <span>{EMAIL}</span>
             </motion.span>
           ) : (
             <motion.span
@@ -101,9 +101,9 @@ export function ContactButton(): ReactNode {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, filter: "blur(8px)" }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="inline-flex items-center gap-2 whitespace-nowrap"
+
             >
-              <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <Mail aria-hidden="true" />
               <span>Contact</span>
             </motion.span>
           )}

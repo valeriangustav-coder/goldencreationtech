@@ -265,7 +265,7 @@ export function ShaderFlow(props: ShaderFlowProps): ReactNode {
     <div
       ref={ref}
       aria-hidden="true"
-      className={props.className ?? "absolute inset-0 h-full w-full grayscale"}
+
     />
   );
 }

@@ -1,15 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/metadata";
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.url;
-
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-  ];
+  return ["", "/projects", "/about", "/services", "/solutions"].map((path) => ({
+    url: `${siteConfig.url}${path}`,
+    changeFrequency: "monthly",
+    priority: path ? 0.8 : 1,
+  }));
 }

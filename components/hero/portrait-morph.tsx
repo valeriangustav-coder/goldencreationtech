@@ -118,7 +118,6 @@ export function PortraitMorph({
   srcA,
   srcB,
   alt,
-  className,
 }: PortraitMorphProps): ReactNode {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [ready, setReady] = useState(false);
@@ -306,15 +305,15 @@ export function PortraitMorph({
       ref={containerRef}
       role="img"
       aria-label={alt}
-      className={className}
-      style={{ position: "relative", width: "100%", height: "100%", filter: "none" }}
+
+
     >
       {!ready ? (
         <img
           src={srcA}
           alt={alt}
           draggable={false}
-          className="absolute inset-0 h-full w-full select-none object-cover"
+
         />
       ) : null}
     </div>
